@@ -1,6 +1,5 @@
-import React, {ChangeEvent, FC, useEffect, useRef, useState} from "react";
-
-import   './style.less';
+import React, { ChangeEvent, FC, useEffect, useRef, useState } from "react";
+import './style.less';
 
 const Icon = () => {
     return (
@@ -31,18 +30,18 @@ type DropdownType = {
     onChange: (value: Option | Option[]) => void;
 };
 
-const Dropdown :FC<DropdownType> = ({
+const Dropdown: FC<DropdownType> = ({
                                         isSearchable,
-                          placeHolder,
-                      options,
-                      isMulti,
-                      onChange
-                  }) => {
+                                        placeHolder,
+                                        options,
+                                        isMulti,
+                                        onChange
+                                    }) => {
     const [showMenu, setShowMenu] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(isMulti ? [] : null);
+    const [selectedValue, setSelectedValue] = useState<Option[] | null>(isMulti ? [] : null);
     const [searchValue, setSearchValue] = useState("");
-    const searchRef = useRef<HTMLDivElement | null>(null);
-    const inputRef = useRef<HTMLDivElement | null>(null);
+    const searchRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setSearchValue("");
@@ -68,7 +67,6 @@ const Dropdown :FC<DropdownType> = ({
         setShowMenu(!showMenu);
     };
 
-
     const getDisplay = () => {
         if (!selectedValue || selectedValue.length === 0) {
             return placeHolder;
@@ -83,8 +81,8 @@ const Dropdown :FC<DropdownType> = ({
                                 onClick={(e) => onTagRemove(e, option)}
                                 className="dropdown-tag-close"
                             >
-                <CloseIcon />
-              </span>
+                                <CloseIcon />
+                            </span>
                         </div>
                     ))}
                 </div>
@@ -98,14 +96,12 @@ const Dropdown :FC<DropdownType> = ({
         return selectedValue.filter((o: Option) => o.value !== option.value);
     };
 
-
     const onTagRemove = (e: React.MouseEvent<HTMLSpanElement>, option: Option) => {
         e.stopPropagation();
         const newValue: Option[] | null = removeOption(option);
         setSelectedValue(newValue);
         onChange(newValue);
     };
-
 
     const onItemClick = (option: Option) => {
         if (!selectedValue) return;
@@ -118,13 +114,11 @@ const Dropdown :FC<DropdownType> = ({
                 newValue = [...selectedValue, option];
             }
         } else {
-            newValue  = option;
+            newValue = option;
         }
         setSelectedValue(newValue);
         onChange(newValue);
     };
-
-
 
     const isSelected = (option: Option): boolean => {
         if (!selectedValue) {
@@ -132,13 +126,11 @@ const Dropdown :FC<DropdownType> = ({
         }
 
         if (isMulti) {
-            return selectedValue!.filter((o: Option) => o.value === option.value).length > 0;
+            return selectedValue.filter((o: Option) => o.value === option.value).length > 0;
         }
 
-        return selectedValue!.value === option.value;
+        return selectedValue.value === option.value;
     };
-
-
 
     const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);

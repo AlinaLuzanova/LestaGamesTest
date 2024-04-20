@@ -1,0 +1,43 @@
+@import '../../index.less';
+
+.vehicleCard{
+  background-color: white;
+  color:#446081;
+  border-radius: 10px;
+  .box-shadow(-7px 10px 16px 8px rgba(255, 255, 255, 0.2));
+  padding: 20px;
+  width: 20vw;
+
+}
+.icon {
+  position: relative;
+  width: 20vw;
+  background-size: cover;
+}
+
+.icon img {
+  position: relative;
+  z-index: 1;
+  width: 20vw;
+}
+.shortInfo{
+  .flex-container();
+  .align-items(center);
+  .justify-content(space-between);
+  .shortInfoCont{
+    .flex-container();
+    .align-items(center);
+    .justify-content(flex-start);
+    gap: 10px;
+    width: fit-content;
+    font-size: 15px;
+  }
+  .progress{
+    width: 80%;
+  }
+}
+.color{
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+}

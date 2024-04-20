@@ -1,0 +1,23 @@
+@import '../../../index.less';
+
+.main{
+  .flex-container();
+  .justify-content(space-between);
+  nav{
+
+    width: 20vw;
+  }
+  .vehicles{
+    width: 80vw;
+    ul{
+      .flex-container();
+      .justify-content(space-between);
+      gap: 20px;
+      .wrap();
+      li{
+        .flex-basis(20vw);
+        .hide-list-item()
+      }
+    }
+  }
+}
