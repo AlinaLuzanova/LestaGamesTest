@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useCallback, useMemo, FC } from 'react';
+import  { useEffect, useState, useCallback, useMemo, FC } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchVehicles } from '../../../redux/features/vehiclesSlice';
 import { RootState } from '../../../store';
@@ -102,9 +103,9 @@ const MainPage: FC = () => {
     }, [filteredVehicles, page]);
 
     useEffect(() => {
-        gsap.from(".li", {
-            x: '50',
-            y: '20',
+        gsap.from(".ul", {
+            x: '100',
+            y: '40',
             borderRadius: 20,
             opacity: 0,
             stagger: 0.2,
@@ -112,6 +113,16 @@ const MainPage: FC = () => {
             duration: .5
         });
     }, [filteredVehicles,page]);
+    useEffect(() => {
+        gsap.from("#header", {
+            y:-1000,
+            borderRadius: 20,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power4.out",
+            duration: 1
+        });
+    }, []);
 
     if (status === 'loading') {
         return <div>Loading...</div>;
@@ -182,7 +193,13 @@ const MainPage: FC = () => {
                 )}
             </nav>
             <div className={style.vehicles}>
-                <h1></h1>
+                <header id='header'>
+                    <Link to='https://korabli.su/' style={{textDecoration: 'none'}}><h1>МИР КОРАБЛЕЙ</h1></Link>
+                    <h4>обзор</h4>
+                    <h3>Добро пожаловать на Стену Кораблей, где вы можете погрузиться в обилие морских судов игры «Мир
+                        Кораблей». Здесь вы найдете полный ассортимент кораблей, доступных в игре, с возможностью
+                        фильтрации по различным параметрам.</h3>
+                </header>
                 <Pagination
                     onNextPageClick={handleNextPageClick}
                     onPrevPageClick={handlePrevPageClick}
@@ -190,18 +207,18 @@ const MainPage: FC = () => {
                         left: page === 1,
                         right: page === Math.ceil(filteredVehicles.length / 27),
                     }}
-                    nav={{ current: page, total: Math.ceil(filteredVehicles.length / 27) }}
+                    nav={{current: page, total: Math.ceil(filteredVehicles.length / 27)}}
                 />
                 {vehiclesToShow.length > 0 ? (
-                    <ul>
+                    <ul className='ul'>
                         {vehiclesToShow.map((vehicle, index) => (
-                            <li key={index} className='li'>
-                                <VehicleCard vehicle={vehicle} />
+                            <li key={index}>
+                                <VehicleCard vehicle={vehicle}/>
                             </li>
                         ))}
                     </ul>
                 ) : (
-                    <h3 style={{ marginLeft: '20px' }}>No vehicles with that settings! Try again</h3>
+                    <h3 style={{marginLeft: '20px'}}>No vehicles with that settings! Try again</h3>
                 )}
                 <Pagination
                     onNextPageClick={handleNextPageClick}
@@ -210,8 +227,9 @@ const MainPage: FC = () => {
                         left: page === 1,
                         right: page === Math.ceil(filteredVehicles.length / 27),
                     }}
-                    nav={{ current: page, total: Math.ceil(filteredVehicles.length / 27) }}
+                    nav={{current: page, total: Math.ceil(filteredVehicles.length / 27)}}
                 />
+                <footer><Link to='https://github.com/AlinaLuzanova'>created by Alina Luzanova</Link></footer>
             </div>
         </div>
     );
