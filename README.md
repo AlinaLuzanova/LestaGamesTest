@@ -1,5 +1,7 @@
 # Тестовое задание на вакнсию frontend-разработчика в Lesta games
 ![screenshot](./src/assets/Screenshot.png)
+![screenshot](./src/assets/Screenshot1.png)
+![screenshot](./src/assets/Screenshot2.png)
 ## Используемые технологии
 
 - React
