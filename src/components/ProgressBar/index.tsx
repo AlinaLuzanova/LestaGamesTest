@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styles from './style.module.less';
 
 interface ProgressBarProps {
@@ -10,9 +10,9 @@ const ProgressBar: FC<ProgressBarProps> = ({ value }) => {
 
     return (
         <div className={styles.progressBarWrapper}>
-            <div className={styles.progressBar} style={{ width: `${widthPercentage}%` }}></div>
+            <div className={styles.progressBar} style={{ width: `${widthPercentage}%` }}>level</div>
         </div>
     );
 }
 
-export default ProgressBar;
+export default React.memo(ProgressBar);

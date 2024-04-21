@@ -1,13 +1,74 @@
 @import '../../index.less';
 
 .vehicleCard{
-  background-color: white;
-  color:#446081;
-  border-radius: 10px;
-  .box-shadow(-7px 10px 16px 8px rgba(255, 255, 255, 0.2));
+  //background-color: #023649;
+  //color: white;
+  //border-radius: 10px;
+  //.box-shadow(-11px 15px 80px 18px rgba(255, 136, 0, 0.3));
   padding: 20px;
   width: 20vw;
+  height: 30vmin;
+  min-height: fit-content;
+}
+.frontComponent{
+  background-color: #023649;
+  color: white;
+  border-radius: 10px;
+  .box-shadow(-11px 15px 80px 18px rgba(255, 136, 0, 0.3));
+  padding: 20px;
+  width: 20vw;
+  height: 30vmin;
+  min-height: fit-content;
+}
+.backComponent{
+  background-color: #023649;
+  color: white;
+  border-radius: 10px;
+  .box-shadow(-11px 15px 80px 18px rgba(255, 136, 0, 0.3));
+  padding: 20px;
+  width: 20vw;
+  height: 30vmin;
+  min-height: fit-content;
+  .flex-container();
+  .justify-content(space-between);
 
+  .leftSide{
+    width: 70%;
+    .flex-container();
+    .flex-direction(column);
+    .justify-content(space-around);
+    div{
+      .flex-container();
+      .align-items(center);
+      gap:10px;
+      height: 30px;
+      transition: all .5s ease;
+      font-weight: 600;
+  white-space: nowrap;
+      p{
+        color:white;
+        padding-inline: 10px;
+        padding-block: 2px;
+        border-radius: 10px;
+        font-weight: 300;
+        font-style: italic;
+        font-size: 18px;
+        white-space: break-spaces;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+
+      }
+    }
+  }
+}
+
+.leftSide div:hover {
+  transform: scale(110%);
+}
+.colorCurc{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 .icon {
   position: relative;
@@ -31,8 +92,11 @@
     gap: 10px;
     width: fit-content;
     font-size: 15px;
+    height: 40px;
   }
   .progress{
+    margin-top: -10px;
+    padding-top: -10px;
     width: 80%;
   }
 }
@@ -40,4 +104,82 @@
   width: 1em;
   height: 1em;
   border-radius: 50%;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContent {
+  background: url("../../assets/seaBg.png") ;
+  background-size: cover;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.close{
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border:none;
+  transition: all .5s ease;
+}
+.close:hover{
+  transform: scale(110%);
+}
+.close:active{
+  transform: scale(90%);
+}
+.title{
+  width: 20vw;
+  .flex-container();
+  background: linear-gradient(90deg, rgba(2,54,73,1) 10%, rgba(0,0,0,1) 27%, rgba(2,54,73,1) 85%);
+  border-radius: 10px;
+  height: 50px;
+  .align-items(center);
+  min-height: fit-content;
+  img{
+    margin-top: 10px;
+    border-radius: 10px;
+    height: 2em;
+  }
+}
+
+.full {
+  background: linear-gradient(90deg, rgba(2,54,73,1) 15%, rgba(0,0,0,1) 50%, rgba(2,54,73,1) 85%);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s, transform 0.2s;
+}
+
+.full:hover {
+  scale: 110%;
+  background: linear-gradient(90deg, rgba(2,54,73,1) 0%, rgba(0,0,0,1) 50%, rgba(2,54,73,1) 100%);
+}
+
+.full.clicked {
+  transform: scale(0.95);
+}
+
+.full span {
+  position: relative;
+  z-index: 1;
+}
+
+
+.full:hover::before {
+  opacity: 1;
+  transform: scale(1);
 }

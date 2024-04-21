@@ -5,6 +5,8 @@ import { client } from '../../client';
  export interface Vehicle {
     title: string;
     description: string;
+    name:string;
+    id:any;
     icons: {
         large: string;
         medium: string;
@@ -51,6 +53,8 @@ export const fetchVehicles = createAsyncThunk(
         vehicles {
           title
           description
+          name
+          id
           icons {
             large
             medium

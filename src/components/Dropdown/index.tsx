@@ -179,4 +179,4 @@ const Dropdown: FC<DropdownType> = ({
     );
 };
 
-export default Dropdown;
+export default React.memo(Dropdown);
